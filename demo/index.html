@@ -17,25 +17,25 @@
 	Click Me (delegate method)
 </div>
 
+<hr/>
+
+<div tabindex="0" role="button" class="js-button-off-click">Click Me (off click method)</div>
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/accessibleClicks.min.js"></script>
 <script>
 (function($) {
-	$('.js-button-click').click(function() {
+	var alertClicked = function() {
         alert('clicked');
-	});
-	$('.js-button-on').on('click', function() {
-        alert('clicked');
-	});
-	$('body').on('click', '.js-button-on-delegate' , function() {
-        alert('clicked');
-	});
-	$('.js-button-bind').bind( 'click', function() {
-        alert('clicked');
-	});
-	$('body').delegate('.js-button-bind-delegate', 'click' , function() {
-        alert('clicked');
+	};
+	$('.js-button-click').click(alertClicked);
+	$('.js-button-on').on('click', alertClicked);
+	$('body').on('click', '.js-button-on-delegate' , alertClicked);
+	$('.js-button-bind').bind( 'click', alertClicked);
+	$('body').delegate('.js-button-bind-delegate', 'click' , alertClicked);
+	$('.js-button-off-click').click(function() {
+		$('.js-button-click').off('click');
 	});
 })(jQuery);
 </script>

@@ -1,6 +1,8 @@
 (function($) {
     "use strict";
     $.fn.oldOn = jQuery.fn.on;
+    $.fn.oldOff = jQuery.fn.off;
+
     $.fn.extend({
         on: function() {
             var args = Array.prototype.slice.call(arguments),
@@ -31,8 +33,19 @@
                 };
                 $.fn.oldOn.apply(this, newArgs);
             }
-        }
+        },
 
+        off: function () {
+            var args = Array.prototype.slice.call(arguments),
+                newArgs = args.slice(0);
+
+                $.fn.oldOff.apply(this, args);
+
+                if (args[0] === 'click') {
+                    newArgs[0] = 'keydown';
+                    $.fn.oldOff.apply(this, newArgs);
+                }
+        }
     });
 
 
