@@ -26,7 +26,7 @@ $.fn.extend({
                     evt.keyCode === enterKey || 
                     evt.which === spaceBar ||
                     evt.keyCode === spaceBar) {
-                    args[callBackPosition]();
+                    args[callBackPosition](evt);
                 }
             };
             $.fn.oldOn.apply(this, newArgs);
