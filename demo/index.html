@@ -19,11 +19,14 @@
 
 <hr/>
 
-<div tabindex="0" role="button" class="js-button-off-click">Click Me (off click method)</div>
-
+<div tabindex="0" role="button" class="js-button-click-off">Click Me (off click method)</div>
+<br/>
+<div tabindex="0" role="button" class="js-button-on-off">Click Me (off click method, with specfic function)</div>
+<br/>
+<div tabindex="0" role="button" class="js-button-on-delegate-off">Click Me (off click method, with specfic function on delegate)</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="../js/accessibleClicks.min.js"></script>
+<script src="../js/accessibleClicks.js"></script>
 <script>
 (function($) {
 	var alertClicked = function() {
@@ -34,9 +37,15 @@
 	$('body').on('click', '.js-button-on-delegate' , alertClicked);
 	$('.js-button-bind').bind( 'click', alertClicked);
 	$('body').delegate('.js-button-bind-delegate', 'click' , alertClicked);
-	$('.js-button-off-click').click(function() {
+	$('.js-button-click-off').click(function() {
 		$('.js-button-click').off('click');
 	});
+	$('.js-button-on-off').click(function() {
+		$('.js-button-on').off('click', alertClicked);
+	});
+	$('.js-button-on-delegate-off').click(function() {
+	    $('body').off('click', '.js-button-on-delegate' , alertClicked);
+	});    
 })(jQuery);
 </script>
 </body>
